@@ -8,11 +8,11 @@ from sklearn.preprocessing import OneHotEncoder, LabelEncoder, StandardScaler
 
 def extract_feature_and_dependent_variable(file_path, dataset=None, delimiter=','):
     if dataset is not None:
-        feature_vector = dataset.iloc[:, :-1].values
+        feature_vector = dataset.iloc[:, 1:-1].values
         dependent_variable_vector = dataset.iloc[:, -1].values
         return feature_vector, dependent_variable_vector
     dataset = pd.read_csv(file_path, delimiter=delimiter)
-    feature_vector = dataset.iloc[:, :-1].values
+    feature_vector = dataset.iloc[:, 1:-1].values
     dependent_variable_vector = dataset.iloc[:, -1].values
     return feature_vector, dependent_variable_vector
 
