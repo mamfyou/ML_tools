@@ -26,6 +26,7 @@ def fill_missing_data(vector, start_index_column, end_index_column, strategy='me
 
 def hot_encoder(vector, column_index=None, remainder='passthrough'):
     if column_index is not None:
+        print(vector)
         vector = vector.copy()
         transformer = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [column_index])],
                                         remainder=remainder)
