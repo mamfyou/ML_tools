@@ -48,7 +48,8 @@ def split_test_and_train_vectors(X_vector, y_vector, test_size, random_state=0):
     return X_train, X_test, y_train, y_test
 
 
-def apply_feature_scaling(X_train, X_test, first_applicable_column, start_applicable_column=None, end_applicable_column=None):
+def apply_feature_scaling(X_train, X_test, first_applicable_column, start_applicable_column=None,
+                          end_applicable_column=None):
     scaler = StandardScaler()
     if first_applicable_column is not None:
         X_train[:, first_applicable_column:] = scaler.fit_transform(X_train[:, first_applicable_column:])
@@ -57,3 +58,9 @@ def apply_feature_scaling(X_train, X_test, first_applicable_column, start_applic
     X_train[:, first_applicable_column:] = scaler.fit_transform(X_train[:, first_applicable_column:])
     X_test[:, first_applicable_column:] = scaler.transform(X_test[:, first_applicable_column:])
     return X_train, X_test
+
+
+def svr_apply_feature_scaling(X, first_applicable_column):
+    scaler = StandardScaler()
+    X = scaler.fit_transform(X)
+    return X
