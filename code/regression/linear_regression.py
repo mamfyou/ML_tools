@@ -1,6 +1,6 @@
 from code.tools import preprocess_data, predict_with_linear_regression, show_plot
 
-X_train, X_test, y_train, y_test = preprocess_data('../../data_sets/Data.csv')
+X_train, X_test, y_train, y_test = preprocess_data('../../data_sets/Purchase.csv')
 
 y_predict, regressor = predict_with_linear_regression(X_train, y_train, X_test)
 

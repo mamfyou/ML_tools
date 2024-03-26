@@ -2,10 +2,10 @@ from matplotlib import pyplot as plt
 from sklearn.linear_model import LinearRegression
 
 from code.utils import extract_feature_and_dependent_variable, fill_missing_data, hot_encoder, \
-    split_test_and_train_vectors, apply_feature_scaling, svr_apply_feature_scaling
+    split_test_and_train_vectors, apply_feature_scaling
 
 
-def preprocess_data(file_path, delimiter=';', fill=False, encoding=False, apply_feature_scaling=True):
+def preprocess_data(file_path, delimiter=',', fill=False, encoding=False, apply_feature_scaling=False):
     # extracting feature vector and independent variable vector
     feature_vector, independent_variable_vector = extract_feature_and_dependent_variable(file_path, delimiter=delimiter)
 
@@ -31,7 +31,7 @@ def preprocess_data(file_path, delimiter=';', fill=False, encoding=False, apply_
     if apply_feature_scaling:
         # applying feature scaling
         feature_vector_train, feature_vector_test = apply_feature_scaling(feature_vector_train, feature_vector_test,
-                                                                          first_applicable_column=3)
+                                                                          first_applicable_column=0)
     # print(feature_vector_train)
     # print(feature_vector_test)
     # print(independent_variable_vector_train)
@@ -69,8 +69,14 @@ def polynomial_preprocess_data(file_path, delimiter=',', fill=False, encoding=Fa
 
         # encoding independent variable with label encoder
         # independent_variable_vector = label_encoder(independent_variable_vector)
+    (feature_vector_train,
+     feature_vector_test,
+     independent_variable_vector_train,
+     independent_variable_vector_test) = split_test_and_train_vectors(feature_vector,
+                                                                      independent_variable_vector,
+                                                                      test_size=0.2)
 
-    return feature_vector, independent_variable_vector
+    return feature_vector_train, feature_vector_test, independent_variable_vector_train, independent_variable_vector_test
 
 
 def svr_preprocess_data(file_path, delimiter=',', fill=False, encoding=False, apply_feature_scaling=True):
@@ -88,4 +94,11 @@ def svr_preprocess_data(file_path, delimiter=',', fill=False, encoding=False, ap
         # encoding independent variable with label encoder
         # independent_variable_vector = label_encoder(independent_variable_vector)
 
-    return feature_vector, independent_variable_vector
+    (feature_vector_train,
+     feature_vector_test,
+     independent_variable_vector_train,
+     independent_variable_vector_test) = split_test_and_train_vectors(feature_vector,
+                                                                      independent_variable_vector,
+                                                                      test_size=0.2)
+
+    return feature_vector_train, feature_vector_test, independent_variable_vector_train, independent_variable_vector_test
