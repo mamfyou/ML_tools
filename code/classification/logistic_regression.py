@@ -3,6 +3,7 @@ import numpy as np
 from matplotlib.colors import ListedColormap
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import StandardScaler
 
 from code.tools import preprocess_data
@@ -24,6 +25,10 @@ print(classifier.predict(scaler.transform([[30, 87000]])))
 
 matrix = confusion_matrix(y_test, y_pred)
 accuracy_score = accuracy_score(y_test, y_pred)
+
+accuracies = cross_val_score(estimator=classifier, X=X_train, y=y_train, cv=10)
+print("Accuracy: {:.2f} %".format(accuracies.mean() * 100))
+print("Standard Deviation: {:.2f} %".format(accuracies.std() * 100))
 
 # displaying plot for Train. Set
 X_set, y_set = scaler.inverse_transform(X_test), y_test
