@@ -30,21 +30,21 @@ accuracies = cross_val_score(estimator=classifier, X=X_train, y=y_train, cv=10)
 print("Accuracy: {:.2f} %".format(accuracies.mean() * 100))
 print("Standard Deviation: {:.2f} %".format(accuracies.std() * 100))
 
-# displaying plot for Train. Set
-X_set, y_set = scaler.inverse_transform(X_test), y_test
-X1, X2 = np.meshgrid(np.arange(start=X_set[:, 0].min() - 10, stop=X_set[:, 0].max() + 10, step=0.25),
-                     np.arange(start=X_set[:, 1].min() - 1000, stop=X_set[:, 1].max() + 1000, step=0.25))
-plt.contourf(X1, X2, classifier.predict(scaler.transform(np.array([X1.ravel(), X2.ravel()]).T)).reshape(X1.shape),
-             alpha=0.75, cmap=ListedColormap(('salmon', 'dodgerblue')))
-plt.xlim(X1.min(), X1.max())
-plt.ylim(X2.min(), X2.max())
-
-
-# displaying plot for Test Set
-for i, j in enumerate(np.unique(y_set)):
-    plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1], c=ListedColormap(('salmon', 'dodgerblue'))(i), label=j)
-plt.title('Logistic Regression (Test set)')
-plt.xlabel('Age')
-plt.ylabel('Estimated Salary')
-plt.legend()
-plt.show()
+# # displaying plot for Train. Set
+# X_set, y_set = scaler.inverse_transform(X_test), y_test
+# X1, X2 = np.meshgrid(np.arange(start=X_set[:, 0].min() - 10, stop=X_set[:, 0].max() + 10, step=0.25),
+#                      np.arange(start=X_set[:, 1].min() - 1000, stop=X_set[:, 1].max() + 1000, step=0.25))
+# plt.contourf(X1, X2, classifier.predict(scaler.transform(np.array([X1.ravel(), X2.ravel()]).T)).reshape(X1.shape),
+#              alpha=0.75, cmap=ListedColormap(('salmon', 'dodgerblue')))
+# plt.xlim(X1.min(), X1.max())
+# plt.ylim(X2.min(), X2.max())
+#
+#
+# # displaying plot for Test Set
+# for i, j in enumerate(np.unique(y_set)):
+#     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1], c=ListedColormap(('salmon', 'dodgerblue'))(i), label=j)
+# plt.title('Logistic Regression (Test set)')
+# plt.xlabel('Age')
+# plt.ylabel('Estimated Salary')
+# plt.legend()
+# plt.show()
