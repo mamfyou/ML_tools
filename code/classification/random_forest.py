@@ -14,7 +14,7 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-classifier = RandomForestClassifier(max_depth=5)
+classifier = RandomForestClassifier(max_depth=3)
 classifier.fit(X_train, y_train)
 
 y_pred = classifier.predict(X_test)
