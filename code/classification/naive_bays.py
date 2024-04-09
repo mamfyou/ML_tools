@@ -1,10 +1,11 @@
+import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.colors import ListedColormap
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import cross_val_score
+from sklearn.naive_bayes import GaussianNB
 from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVC
-import matplotlib.pyplot as plt
+
 from code.tools import preprocess_data
 
 X_train, X_test, y_train, y_test = preprocess_data('../../data_sets/Social_Network_Ads.csv')
@@ -13,7 +14,7 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-classifier = SVC(kernel='rbf')
+classifier = GaussianNB()
 classifier.fit(X_train, y_train)
 
 y_pred = classifier.predict(X_test)
@@ -41,7 +42,7 @@ plt.ylim(X2.min(), X2.max())
 # displaying plot for Test Set
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1], c=ListedColormap(('salmon', 'dodgerblue'))(i), label=j)
-plt.title('Kernel SVM (Test Set)')
+plt.title('Naive Bays(Test Set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
