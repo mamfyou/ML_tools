@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 from sklearn.linear_model import LinearRegression
 
 from code.utils import extract_feature_and_dependent_variable, fill_missing_data, hot_encoder, \
-    split_test_and_train_vectors, feature_scaling
+    split_test_and_train_vectors, feature_scaling, label_encoder
 
 
 def preprocess_data(file_path, delimiter=',', fill=False, encoding=False, apply_feature_scaling=False):
@@ -18,7 +18,7 @@ def preprocess_data(file_path, delimiter=',', fill=False, encoding=False, apply_
         feature_vector = hot_encoder(feature_vector, column_index=3)
 
         # encoding independent variable with label encoder
-        # independent_variable_vector = label_encoder(independent_variable_vector)
+        dependent_variable_vector = label_encoder(dependent_variable_vector)
 
     # splitting dataset to test and train sets
     (feature_vector_train,
