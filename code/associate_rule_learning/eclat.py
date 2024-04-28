@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from apyori import apriori
 
-dataset = pd.read_csv('../../data_sets/Market_Basket_Optimisation.csv', header=None)
+dataset = pd.read_csv('../../data_sets/transaction3.csv', header=None)
 
 order_items = []
 for i in range(dataset.shape[0]):
