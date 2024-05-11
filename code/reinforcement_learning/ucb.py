@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 dataset = pd.read_csv('../../data_sets/Ads_CTR_Optimisation.csv')
 
-round = 1000
+round = 600
 
 ads = 10
 
@@ -40,6 +40,7 @@ for r in range(round):
     total_reward += reward
 
 plt.hist(selected_ads)
+plt.title('UCB Distribution')
 plt.xlabel('Ads')
 plt.ylabel('upper bound')
 plt.show()
