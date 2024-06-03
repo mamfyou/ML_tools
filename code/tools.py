@@ -15,7 +15,7 @@ def preprocess_data(file_path, delimiter=',', fill=False, encoding=False, apply_
 
     if encoding:
         # encoding country column data with hot encoder
-        feature_vector = hot_encoder(feature_vector, column_index=3)
+        # feature_vector = hot_encoder(feature_vector, column_index=3)
 
         # encoding independent variable with label encoder
         dependent_variable_vector = label_encoder(dependent_variable_vector)
